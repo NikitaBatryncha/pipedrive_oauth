@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <form action="#" class="form" id="xyz">
+    <span class="form__fraction deal_details">
+      <label for="" class="form__title">Deal details</label>
+      <span class="input__wrapper input__wrapper--1">
+      </span>
+    </span>
+    <span class="form__fraction client_details">
+      <label for="" class="form__title">Client details</label>
+      <span class="input__wrapper input__wrapper--1">
+      </span>
+    </span>
+    <span class="form__fraction job_type">
+      <label for="" class="form__title">Job type</label>
+      <span class="input__wrapper input__wrapper--2">
+      </span>
+    </span>
+    <span class="form__fraction service_location">
+      <label for="" class="form__title">Service location</label>
+      <span class="input__wrapper input__wrapper--3">
+      </span>
+    </span>
+    <span class="form__fraction scheduled">
+      <label for="" class="form__title">Scheduled</label>
+      <span class="input__wrapper input__wrapper--4">
+      </span>
+    </span>
+    <button type="submit">Save</button>
+  </form>
+  <script src="./src/index.js"></script>
+  <script defer type="module" src="./src/server.js"></script>
+  <script>
+    (async () => {
+      if (typeof AppExtensionsSDK !== 'undefined') {
+        const sdk = await new AppExtensionsSDK().initialize({size: {width: 626, height: 700}});
+        const { status } = await sdk.execute(Command.OPEN_MODAL, {
+          type: Modal.CUSTOM_MODAL,
+          action_id: 'CREATE_DEAL',
+          data: {
+            item: 'https://nikitabatryncha.github.io/pipedrive_nikita/',
+          }
+        });
+      } else {
+        console.error('AppExtensionsSDK не определен. Убедитесь, что он загружен.');
+      }
+    })();
+  </script>
+</body>
+</html>
+
